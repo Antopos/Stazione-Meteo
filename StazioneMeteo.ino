@@ -175,7 +175,7 @@ String date;
 String currencyRates;
 String weatherString;
 String decodedMsg;
-String mmStr;
+String ggStr, mmStr;
 String dataDiOggi;
 
 // =================================================================
@@ -673,6 +673,13 @@ void getTime()
 
       gg = date.substring(10, 12).toInt();  // giorno
 
+      if (gg <= 9) {
+        ggStr = "0" + String(gg); // aggiunge uno zero dove serve
+      } // fine if
+      else {
+        ggStr = String(gg);
+      } // fine else
+
       // converte da inglese in numero
       if (date.substring(13, 16) == "JAN") {
         mm = 1; // mesi
@@ -717,11 +724,11 @@ void getTime()
         mmStr = "0" + String(mm); // aggiunge uno zero dove serve
       } // fine if
 
-      Serial.println("DATA: " + String(gg) + "/" + mmStr + "/" + String(aa)); // DEBUG
+      Serial.println("DATA: " + ggStr + "/" + mmStr + "/" + String(aa)); // DEBUG
 
-      dataDiOggi = " " + String(gg) + "/" + mmStr + "/" + String(aa); // Data di oggi
+      dataDiOggi = ggStr + "/" + mmStr + "/" + String(aa); // Data di oggi
 
-      myData[0] = String(gg);
+      myData[0] = ggStr;
       myData[1] = mmStr;
       myData[2] = String(aa);
 
